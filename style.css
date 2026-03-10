@@ -62,7 +62,8 @@ ul {
 
 .container {
     width: 90%;
-    max-width: 1280px;
+    max-width: 1440px;
+    /* Increased for better large desktop experience */
     margin: 0 auto;
 }
 
@@ -73,7 +74,8 @@ ul {
 /* Typography Utilities */
 .section-header {
     text-align: center;
-    margin-bottom: 3rem;
+    margin-bottom: 2.5rem;
+    /* Reduced from 3rem */
 }
 
 .section-header h2 {
@@ -146,7 +148,8 @@ ul {
     left: 0;
     width: 100%;
     z-index: 1000;
-    padding: 20px 0;
+    padding: 15px 0;
+    /* Reduced from 20px */
     transition: var(--transition-fast);
     background: transparent;
 }
@@ -154,7 +157,8 @@ ul {
 .navbar.scrolled {
     background: rgba(0, 0, 0, 0.95);
     backdrop-filter: blur(10px);
-    padding: 15px 0;
+    padding: 10px 0;
+    /* Reduced from 15px */
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
@@ -323,7 +327,8 @@ ul {
 .hero-main-logo {
     max-width: 100%;
     height: auto;
-    max-height: 450px;
+    max-height: clamp(300px, 40vh, 500px);
+    /* Fluid scaling height */
     object-fit: contain;
     mix-blend-mode: screen;
     transition: transform 0.4s ease, filter 0.4s ease;
@@ -409,7 +414,8 @@ ul {
 
 /* Sections Global */
 section {
-    padding: 100px 0;
+    padding: clamp(50px, 8vh, 100px) 0;
+    /* Reduced from 60px-120px */
 }
 
 /* Services Section */
@@ -839,7 +845,8 @@ section {
 /* Footer */
 footer {
     background-color: #000000;
-    padding: 60px 0 30px;
+    padding: 40px 0 25px;
+    /* Reduced from 60px 0 30px */
     border-top: 1px solid rgba(255, 255, 255, 0.05);
     border-bottom: 8px solid var(--accent-red);
     box-shadow: 0 4px 25px rgba(255, 26, 26, 0.2);
@@ -854,7 +861,8 @@ footer {
 
 .footer-brand {
     max-width: 500px;
-    margin-bottom: 40px;
+    margin-bottom: 25px;
+    /* Reduced from 40px */
 }
 
 .footer-logo {
@@ -991,49 +999,78 @@ footer {
     transform: translateY(0);
 }
 
-/* Scroll to Top Button */
+/* Scroll to Top Button - Tech Edition */
 .scroll-to-top {
     position: fixed;
     bottom: 30px;
     right: 30px;
-    width: 50px;
-    height: 50px;
-    background-color: var(--accent-red);
+    width: 55px;
+    height: 55px;
+    background: rgba(10, 10, 10, 0.8);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
     color: var(--text-white);
-    border-radius: 50%;
+    border-radius: 12px;
+    /* Modern tech shape */
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     z-index: 2000;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     opacity: 0;
     visibility: hidden;
-    transform: translateY(20px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 15px rgba(255, 26, 26, 0.3);
-    border: 2px solid transparent;
+    transform: translateY(30px) rotate(-10deg);
+    border: 1px solid rgba(255, 26, 26, 0.2);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), inset 0 0 0 0 rgba(255, 26, 26, 0.1);
+    overflow: hidden;
+}
+
+.scroll-to-top::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: conic-gradient(from 0deg, transparent, var(--accent-red), transparent 30%);
+    animation: rotate-border 4s linear infinite;
+    opacity: 0;
+    transition: opacity 0.3s;
+    z-index: -1;
+}
+
+@keyframes rotate-border {
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 .scroll-to-top.show {
     opacity: 1;
     visibility: visible;
-    transform: translateY(0);
+    transform: translateY(0) rotate(0deg);
 }
 
 .scroll-to-top:hover {
-    background-color: #ffffff;
-    color: var(--accent-red);
-    transform: translateY(-8px) scale(1.1);
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6), 0 0 25px rgba(255, 26, 26, 0.5);
     border-color: var(--accent-red);
+    box-shadow: 0 0 30px rgba(255, 26, 26, 0.5), inset 0 0 15px rgba(255, 26, 26, 0.2);
+    transform: translateY(-8px) scale(1.1);
+}
+
+.scroll-to-top:hover::after {
+    opacity: 0.3;
 }
 
 .scroll-to-top i {
-    font-size: 1.2rem;
-    transition: transform 0.3s ease;
+    font-size: 1.3rem;
+    transition: all 0.3s ease;
+    z-index: 2;
 }
 
 .scroll-to-top:hover i {
+    color: #ffffff;
+    text-shadow: 0 0 10px rgba(255, 26, 26, 0.8);
     transform: translateY(-2px);
 }
 
@@ -1043,5 +1080,29 @@ footer {
         right: 20px;
         width: 45px;
         height: 45px;
+    }
+}
+
+/* --- Added for Desktop Size Consistency --- */
+@media screen and (min-width: 1600px) {
+    html {
+        font-size: 110%;
+        /* Slightly scale up for very high resolutions (2K/4K) */
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .hero-content {
+        gap: 2rem;
+    }
+
+    .about-content {
+        gap: 2rem;
+    }
+}
+
+@media screen and (min-width: 992px) and (max-width: 1200px) {
+    .hero-title {
+        font-size: 3.5rem;
     }
 }
