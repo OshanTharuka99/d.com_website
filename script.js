@@ -161,7 +161,28 @@ document.addEventListener("DOMContentLoaded", () => {
 
     window.manualHeroReset = resetHeroAutoPlay;
     startHeroAutoPlay();
+
+    // Scroll to Top Button Logic
+    const scrollTopBtn = document.getElementById('scroll-to-top');
+
+    if (scrollTopBtn) {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                scrollTopBtn.classList.add('show');
+            } else {
+                scrollTopBtn.classList.remove('show');
+            }
+        });
+
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    }
 });
+
 
 // Toggle Hero Content with smooth fade and layout stability
 window.toggleHeroContent = function () {
