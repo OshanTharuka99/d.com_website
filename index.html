@@ -1,0 +1,447 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>D.COM IT Solution</title>
+  <meta name="description"
+    content="D.COM IT Solution provides cutting-edge Networking, Security, ELV, Website Deployment, and Software Solutions." />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Inter:wght@400;500;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="container nav-content">
+      <a href="#" class="logo">
+        <img src="logo.jpg" alt="D.COM IT Solution Logo" class="brand-logo" />
+        <span class="logo-text">D.COM <span class="highlight">IT</span> Solution</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#partners">Partners</a></li>
+        <li><a href="#contact" class="btn-nav">Contact Us</a></li>
+      </ul>
+      <div class="mobile-menu-btn">
+        <i class="fas fa-bars"></i>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="home" class="hero">
+    <div class="background-elements">
+      <canvas id="hero-canvas"></canvas>
+      <div class="glow red-glow"></div>
+      <div class="glow white-glow"></div>
+    </div>
+    <div class="container hero-content">
+      <div class="hero-logo-wrapper">
+        <img src="logo.jpg" alt="D.COM IT Solution Logo" class="hero-main-logo" />
+      </div>
+      <div class="hero-text-wrapper"
+        style="flex: 1; display: flex; flex-direction: column; justify-content: center; min-height: 400px;">
+        <!-- Stacking container for content stability -->
+        <div style="display: grid; align-items: center; flex: 1;">
+          <div class="hero-text-content" id="main-hero-text"
+            style="cursor: pointer; grid-area: 1/1; transition: opacity 0.4s ease, visibility 0.4s; opacity: 1; visibility: visible; pointer-events: auto;"
+            onclick="toggleHeroContent()">
+            <h1 class="hero-title">
+              Next-Gen <span class="highlight">IT Solutions</span> for Your Future
+            </h1>
+            <p class="hero-subtitle">
+              We empower businesses with robust Networking, Security, ELV systems,
+              Web deployment, and cutting-edge Software solutions.
+            </p>
+            <div class="hero-buttons">
+              <a href="#services" class="btn btn-primary" onclick="event.stopPropagation()">Discover Services <i
+                  class="fas fa-arrow-right"></i></a>
+              <a href="#contact" class="btn btn-secondary" onclick="event.stopPropagation()">Get in Touch</a>
+            </div>
+          </div>
+
+          <!-- Alternative Content 1: D.COM Meaning -->
+          <div id="secondary-hero-content"
+            style="display: flex; flex-direction: column; gap: 20px; grid-area: 1/1; transition: opacity 0.4s ease, visibility 0.4s; opacity: 0; visibility: hidden; pointer-events: none;">
+            <div class="hero-text-content hero-text-box" style="
+                        padding: 30px;
+                        background: rgba(18, 18, 18, 0.7);
+                        border-radius: 12px;
+                        backdrop-filter: blur(10px);
+                        cursor: pointer;
+                        " onclick="toggleHeroContent()">
+              <h1 class="hero-title" style="font-size: 2.2rem; margin-bottom: 25px">
+                The <span class="highlight">D.COM</span> Core
+              </h1>
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 25px;">
+                <div style="border-left: 3px solid var(--accent-red); padding-left: 15px;">
+                  <h4 style="color: var(--accent-red); margin-bottom: 5px; font-size: 1.1rem; letter-spacing: 1px;">
+                    DESIGN
+                  </h4>
+                  <p style="font-size: 0.9rem; color: var(--text-muted); margin: 0;">Innovative engineering and strategy
+                  </p>
+                </div>
+                <div style="border-left: 3px solid var(--accent-red); padding-left: 15px;">
+                  <h4 style="color: var(--accent-red); margin-bottom: 5px; font-size: 1.1rem; letter-spacing: 1px;">
+                    CONNECT
+                  </h4>
+                  <p style="font-size: 0.9rem; color: var(--text-muted); margin: 0;">Seamless integration and networking
+                  </p>
+                </div>
+                <div style="border-left: 3px solid var(--accent-red); padding-left: 15px;">
+                  <h4 style="color: var(--accent-red); margin-bottom: 5px; font-size: 1.1rem; letter-spacing: 1px;">
+                    OPERATE
+                  </h4>
+                  <p style="font-size: 0.9rem; color: var(--text-muted); margin: 0;">Optimal performance and management
+                  </p>
+                </div>
+                <div style="border-left: 3px solid var(--accent-red); padding-left: 15px;">
+                  <h4 style="color: var(--accent-red); margin-bottom: 5px; font-size: 1.1rem; letter-spacing: 1px;">
+                    MAINTAIN
+                  </h4>
+                  <p style="font-size: 0.9rem; color: var(--text-muted); margin: 0;">Long-term reliability and support
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Alternative Content 2: Consulting & Support -->
+          <div id="ternary-hero-content"
+            style="display: flex; flex-direction: column; gap: 20px; grid-area: 1/1; transition: opacity 0.4s ease, visibility 0.4s; opacity: 0; visibility: hidden; pointer-events: none;">
+            <div class="hero-text-content hero-text-box" style="
+                  padding: 20px;
+                  background: rgba(18, 18, 18, 0.6);
+                  border-radius: 12px;
+                  border: 1px solid rgba(255, 26, 26, 0.1);
+                  backdrop-filter: blur(10px);
+                  cursor: pointer;
+                  " onclick="toggleHeroContent()">
+              <h2 class="hero-title" style="font-size: 2rem; margin-bottom: 10px">
+                Expert <span class="highlight">Consulting</span>
+              </h2>
+              <p class="hero-subtitle" style="font-size: 1rem; margin-bottom: 0">
+                Providing top-tier support and strategies to maximize your
+                business potential and growth.
+              </p>
+            </div>
+            <div class="hero-text-content hero-text-box" style="
+                  padding: 20px;
+                  background: rgba(18, 18, 18, 0.6);
+                  border-radius: 12px;
+                  border: 1px solid rgba(255, 26, 26, 0.1);
+                  backdrop-filter: blur(10px);
+                  cursor: pointer;
+                  " onclick="toggleHeroContent()">
+              <h2 class="hero-title" style="font-size: 2rem; margin-bottom: 10px">
+                24/7 <span class="highlight">Support</span>
+              </h2>
+              <p class="hero-subtitle" style="font-size: 1rem; margin-bottom: 0">
+                Always available to maintain and monitor your enterprise
+                deployments for 99% uptime.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Premium Pagination Dots -->
+        <div class="hero-pagination">
+          <span class="dot active" id="hero-dot-0" onclick="switchHero(0)"></span>
+          <span class="dot" id="hero-dot-1" onclick="switchHero(1)"></span>
+          <span class="dot" id="hero-dot-2" onclick="switchHero(2)"></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section id="services" class="services">
+    <div class="container">
+      <div class="section-header">
+        <h2>Our <span class="highlight">Core</span> Services</h2>
+        <p>
+          Comprehensive technology solutions tailored to drive your business
+          forward.
+        </p>
+      </div>
+
+      <div class="services-grid">
+        <!-- 1. Networking -->
+        <div class="service-card">
+          <div class="service-image">
+            <img src="networking.png" alt="Networking Infrastructure" />
+          </div>
+          <h3>Networking</h3>
+          <p>
+            High-performance network infrastructure design, implementation,
+            and maintenance for seamless connectivity.
+          </p>
+        </div>
+
+        <!-- 2. CCTV & Access Control -->
+        <div class="service-card">
+          <div class="service-image">
+            <img src="cctv.png" alt="CCTV and Access Control Systems" />
+          </div>
+          <h3>CCTV & Access Control</h3>
+          <p>
+            High-definition surveillance cameras and integrated door access
+            control systems for secure environment management.
+          </p>
+        </div>
+
+        <!-- 3. ELV Solutions -->
+        <div class="service-card">
+          <div class="service-image">
+            <img src="elv.png" alt="ELV Solutions" />
+          </div>
+          <h3>ELV Solutions</h3>
+          <p>
+            Extra Low Voltage systems including PA systems, access control,
+            and smart building automation.
+          </p>
+        </div>
+
+        <!-- 4. Website Deployment -->
+        <div class="service-card">
+          <div class="service-image">
+            <img src="web.png" alt="Website Deployment" />
+          </div>
+          <h3>Website Deployment</h3>
+          <p>
+            Modern, responsive, and performance-optimized website design and
+            sophisticated web application deployment.
+          </p>
+        </div>
+
+        <!-- 5. Software Solutions -->
+        <div class="service-card">
+          <div class="service-image">
+            <img src="software.png" alt="Software Solutions" />
+          </div>
+          <h3>Software Solutions</h3>
+          <p>
+            Custom software development tailored to automate your workflows
+            and scale your business operations.
+          </p>
+        </div>
+
+        <!-- 6. Security Solutions -->
+        <div class="service-card">
+          <div class="service-image">
+            <img src="security.png" alt="Security Solutions" />
+          </div>
+          <h3>Security Solutions</h3>
+          <p>
+            Advanced cybersecurity and physical security measures to protect
+            your digital and corporate assets comprehensively.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Us Section -->
+  <section id="about" class="about">
+    <div class="container about-content">
+      <div class="about-text">
+        <h2><span class="highlight">About</span> D.COM IT Solution</h2>
+        <p class="lead">
+          Pioneering technology solutions with a commitment to excellence.
+        </p>
+        <p>
+          D.COM IT Solution stands at the forefront of digital transformation.
+          We believe that technology should be an enabler, not an obstacle.
+          Our team of expert engineers and developers work tirelessly to
+          integrate complex IT ecosystems into streamlined, user-friendly
+          solutions.
+        </p>
+        <p>
+          With years of experience across diverse industries, we don't just
+          solve problems; we engineer innovation. Whether you need a secure
+          corporate network, an intelligent ELV infrastructure, or a
+          state-of-the-art web platform, D.COM is your trusted technology
+          partner.
+        </p>
+
+        <div class="stats">
+          <div class="stat-item">
+            <span class="stat-number">99%</span>
+            <span class="stat-label">Uptime</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">50+</span>
+            <span class="stat-label">Projects</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">24/7</span>
+            <span class="stat-label">Support</span>
+          </div>
+        </div>
+      </div>
+      <div class="about-image-wrapper">
+        <div class="about-slideshow">
+          <img src="about-technician.png" alt="D.COM IT Solution Technician" class="about-image active" />
+          <img src="about-networking.png" alt="Networking Solutions" class="about-image" />
+          <img src="about-software.jpg" alt="Software Solutions" class="about-image" />
+
+          <div class="about-dots">
+            <span class="about-dot active" data-index="0"></span>
+            <span class="about-dot" data-index="1"></span>
+            <span class="about-dot" data-index="2"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Partners Section -->
+  <section id="partners" class="partners">
+    <div class="container">
+      <div class="section-header text-center">
+        <h2>Our <span class="highlight">Experience</span></h2>
+        <p>
+          Collaborating with industry leaders to bring you the best
+          technology.
+        </p>
+      </div>
+
+      <div class="partner-logos">
+        <div class="partner-logo"><img src="patner logo/cisco.png" alt="Cisco" /></div>
+        <div class="partner-logo"><img src="patner logo/TPLINK.png" alt="TP-Link" /></div>
+        <div class="partner-logo"><img src="patner logo/huawei-logo.png" alt="Huawei" /></div>
+        <div class="partner-logo"><img src="patner logo/aruba.png" alt="Aruba" /></div>
+        <div class="partner-logo"><img src="patner logo/hikvision.png" alt="Hikvision" /></div>
+        <div class="partner-logo"><img src="patner logo/Dahua.png" alt="Dahua" /></div>
+        <div class="partner-logo"><img src="patner logo/Ezviz.png" alt="Ezviz" /></div>
+        <div class="partner-logo"><img src="patner logo/ZKTECO.png" alt="ZKTeco" /></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Us Section -->
+  <section id="contact" class="contact">
+    <div class="container">
+      <div class="section-header">
+        <h2>Get in <span class="highlight">Touch</span></h2>
+        <p>
+          Ready to transform your IT infrastructure? Reach out to our experts
+          today.
+        </p>
+      </div>
+
+      <div class="contact-wrapper">
+        <div class="contact-info">
+          <div style="margin-bottom: 30px;">
+            <h3 style="color: #ffffff; font-size: 1.8rem; margin-bottom: 15px;">Connect <span class="highlight">With
+                Us</span></h3>
+            <p style="color: #a3a3a3; font-size: 0.95rem;">Have a question? We're here to help.</p>
+          </div>
+
+          <div class="info-items" style="display: flex; flex-direction: column; gap: 30px;">
+            <div class="info-item">
+              <i class="fas fa-map-marker-alt"
+                style="background: rgba(255, 26, 26, 0.1); padding: 15px; border-radius: 10px; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center;"></i>
+              <div>
+                <h4 style="margin-top: 0;">Our Address</h4>
+                <p>185/b, Ihalayagoda, Gampaha</p>
+              </div>
+            </div>
+
+            <div class="info-item">
+              <i class="fas fa-envelope"
+                style="background: rgba(255, 26, 26, 0.1); padding: 15px; border-radius: 10px; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center;"></i>
+              <div>
+                <h4 style="margin-top: 0;">Email Us</h4>
+                <p>dcom99x@gmail.com</p>
+              </div>
+            </div>
+
+            <div class="info-item">
+              <i class="fas fa-phone-alt"
+                style="background: rgba(255, 26, 26, 0.1); padding: 15px; border-radius: 10px; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center;"></i>
+              <div>
+                <h4 style="margin-top: 0;">Call Us</h4>
+                <p>+94 71 707 1006</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-social"
+            style="margin-top: auto; padding-top: 40px; border-top: 1px solid rgba(255, 255, 255, 0.1);">
+            <h4 style="margin-bottom: 20px;">Follow Our Updates</h4>
+            <div style="display: flex; gap: 15px;">
+              <a href="#"
+                style="width: 40px; height: 40px; background: rgba(255, 255, 255, 0.05); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; transition: all 0.3s ease; border: 1px solid rgba(255, 255, 255, 0.1);">
+                <i class="fab fa-facebook-f"></i>
+              </a>
+              <a href="#"
+                style="width: 40px; height: 40px; background: rgba(255, 255, 255, 0.05); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; transition: all 0.3s ease; border: 1px solid rgba(255, 255, 255, 0.1);">
+                <i class="fab fa-whatsapp"></i>
+              </a>
+              <a href="#"
+                style="width: 40px; height: 40px; background: rgba(255, 255, 255, 0.05); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; transition: all 0.3s ease; border: 1px solid rgba(255, 255, 255, 0.1);">
+                <i class="fab fa-instagram"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <form class="contact-form">
+          <div class="form-group">
+            <input type="text" placeholder="Your Name" required />
+          </div>
+          <div class="form-group">
+            <input type="email" placeholder="Your Email" required />
+          </div>
+          <div class="form-group">
+            <input type="text" placeholder="Subject" required />
+          </div>
+          <div class="form-group">
+            <textarea placeholder="Your Message" rows="5" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary submit-btn">
+            Send Message <i class="fas fa-paper-plane" style="margin-left: 10px;"></i>
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-content">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <img src="logo.jpg" alt="D.COM IT Solution Logo" class="footer-brand-logo" />
+          <h3>D.COM <span class="highlight">IT</span> Solution</h3>
+        </div>
+        <p>
+          Your ultimate technology partner. Delivering excellence in
+          Networking, Security, ELV, and Software Solutions.
+        </p>
+        <div class="social-links">
+          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+
+      <div class="footer-links">
+        <p>&copy; 2026 D.COM IT Solution. All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
