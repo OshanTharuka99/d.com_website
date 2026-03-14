@@ -140,6 +140,18 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         });
 
+        const aboutSlideshow = document.querySelector('.about-slideshow');
+        if (aboutSlideshow) {
+            aboutSlideshow.style.cursor = 'pointer';
+            aboutSlideshow.addEventListener('click', (e) => {
+                // Only trigger if clicking the image, not the dots
+                if (!e.target.classList.contains('about-dot')) {
+                    nextImage();
+                    resetSlideshow();
+                }
+            });
+        }
+
         startSlideshow();
     }
 
