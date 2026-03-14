@@ -327,8 +327,8 @@ ul {
 .hero-main-logo {
     max-width: 100%;
     height: auto;
-    max-height: clamp(300px, 40vh, 500px);
-    /* Fluid scaling height */
+    max-height: 450px;
+
     object-fit: contain;
     mix-blend-mode: screen;
     transition: transform 0.4s ease, filter 0.4s ease;
@@ -794,6 +794,25 @@ section {
     flex-shrink: 0;
 }
 
+.contact-icon {
+    background: rgba(255, 26, 26, 0.1);
+    padding: 15px;
+    border-radius: 10px;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem !important;
+    transition: var(--transition-fast);
+}
+
+.info-item:hover .contact-icon {
+    background: var(--accent-red);
+    color: white !important;
+    transform: scale(1.1);
+}
+
 .contact-social a:hover {
     background: var(--accent-red) !important;
     border-color: var(--accent-red) !important;
@@ -1083,11 +1102,105 @@ footer {
     }
 }
 
-/* --- Added for Desktop Size Consistency --- */
-@media screen and (min-width: 1600px) {
+/* --- Large Display Optimization --- */
+
+/* Laptops/Small Monitors (1440px+) */
+@media screen and (min-width: 1440px) {
+    .container {
+        max-width: 1300px;
+    }
+
+    .hero-title {
+        font-size: 4.5rem;
+    }
+
+    .service-image {
+        height: 200px;
+    }
+}
+
+/* Standard Monitors (1920px+) - 21" to 24" */
+@media screen and (min-width: 1920px) {
     html {
-        font-size: 110%;
-        /* Slightly scale up for very high resolutions (2K/4K) */
+        font-size: 115%;
+    }
+
+    .container {
+        max-width: 1600px;
+    }
+
+    .hero-main-logo {
+        max-height: 550px;
+    }
+
+    .service-image {
+        height: 240px;
+    }
+
+    .brand-logo {
+        height: 54px;
+    }
+
+    .footer-brand-logo {
+        height: 75px;
+    }
+
+    .contact-icon {
+        width: 70px;
+        height: 70px;
+        font-size: 1.6rem !important;
+    }
+
+    .partner-logo img {
+        width: 180px;
+        max-height: 70px;
+    }
+}
+
+/* Large Monitors (2560px+) - 27" and above */
+@media screen and (min-width: 2560px) {
+    html {
+        font-size: 125%;
+    }
+
+    .container {
+        max-width: 2000px;
+    }
+
+    .hero-main-logo {
+        max-height: 700px;
+    }
+
+    .service-image {
+        height: 300px;
+    }
+
+    .contact-icon {
+        width: 80px;
+        height: 80px;
+        font-size: 1.8rem !important;
+    }
+
+    .brand-logo {
+        height: 64px;
+    }
+
+    .footer-brand-logo {
+        height: 85px;
+    }
+
+    .logo-text {
+        font-size: 1.8rem;
+    }
+
+    .partner-logo img {
+        width: 220px;
+        max-height: 90px;
+    }
+
+    .btn {
+        padding: 18px 40px;
+        font-size: 1.1rem;
     }
 }
 
