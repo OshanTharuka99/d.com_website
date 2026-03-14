@@ -360,4 +360,90 @@ document.addEventListener("DOMContentLoaded", () => {
         initParticles();
         animate();
     }
+
+    // Partner Logo Mobile Slider
+    const partnerContainer = document.getElementById('partner-slider');
+    const partnerDotsContainer = document.getElementById('partner-dots');
+
+    if (partnerContainer && partnerDotsContainer) {
+        const logos = Array.from(partnerContainer.querySelectorAll('.partner-logo'));
+        let currentGroup = 0;
+        let sliderInterval;
+        const itemsPerGroup = 3;
+        const groupCount = Math.ceil(logos.length / itemsPerGroup);
+
+        function setupSlider() {
+            if (window.innerWidth <= 768) {
+                // Generate dots
+                partnerDotsContainer.innerHTML = '';
+                for (let i = 0; i < groupCount; i++) {
+                    const dot = document.createElement('div');
+                    dot.classList.add('partner-dot');
+                    if (i === 0) dot.classList.add('active');
+                    dot.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        showGroup(i);
+                        startAutoSlider();
+                    });
+                    partnerDotsContainer.appendChild(dot);
+                }
+                showGroup(0);
+                startAutoSlider();
+            } else {
+                // Reset for desktop
+                logos.forEach(logo => {
+                    logo.style.display = 'flex';
+                    logo.style.opacity = '1';
+                });
+                partnerDotsContainer.innerHTML = '';
+                clearInterval(sliderInterval);
+            }
+        }
+
+        function showGroup(index) {
+            if (window.innerWidth > 768) return;
+
+            currentGroup = index;
+            const start = index * itemsPerGroup;
+            const end = start + itemsPerGroup;
+
+            logos.forEach((logo, i) => {
+                if (i >= start && i < end) {
+                    logo.style.display = 'flex';
+                    logo.style.opacity = '0';
+                    setTimeout(() => {
+                        logo.style.opacity = '1';
+                    }, 50);
+                } else {
+                    logo.style.display = 'none';
+                }
+            });
+
+            // Update dots
+            const dots = partnerDotsContainer.querySelectorAll('.partner-dot');
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === index);
+            });
+        }
+
+        function nextGroup() {
+            showGroup((currentGroup + 1) % groupCount);
+        }
+
+        function startAutoSlider() {
+            clearInterval(sliderInterval);
+            sliderInterval = setInterval(nextGroup, 4000);
+        }
+
+        // Tap to next logic
+        partnerContainer.addEventListener('click', () => {
+            if (window.innerWidth <= 768) {
+                nextGroup();
+                startAutoSlider(); // Reset timer
+            }
+        });
+
+        window.addEventListener('resize', setupSlider);
+        setupSlider();
+    }
 });
