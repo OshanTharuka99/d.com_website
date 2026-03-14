@@ -238,6 +238,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const ctx = canvas.getContext('2d');
         let width, height;
         let particles = [];
+        let mouse = { x: null, y: null, radius: 150 };
 
         // Configuration
         const particleCount = 60;
@@ -250,6 +251,33 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         window.addEventListener('resize', resize);
+
+        // Pointer events
+        window.addEventListener('mousemove', (e) => {
+            mouse.x = e.clientX;
+            mouse.y = e.clientY - canvas.getBoundingClientRect().top;
+        });
+
+        window.addEventListener('mouseleave', () => {
+            mouse.x = null;
+            mouse.y = null;
+        });
+
+        window.addEventListener('touchstart', (e) => {
+            mouse.x = e.touches[0].clientX;
+            mouse.y = e.touches[0].clientY - canvas.getBoundingClientRect().top;
+        }, { passive: true });
+
+        window.addEventListener('touchmove', (e) => {
+            mouse.x = e.touches[0].clientX;
+            mouse.y = e.touches[0].clientY - canvas.getBoundingClientRect().top;
+        }, { passive: true });
+
+        window.addEventListener('touchend', () => {
+            mouse.x = null;
+            mouse.y = null;
+        });
+
         resize();
 
         class Particle {
@@ -262,6 +290,18 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             update() {
+                // Interaction
+                if (mouse.x !== null && mouse.y !== null) {
+                    let dx = mouse.x - this.x;
+                    let dy = mouse.y - this.y;
+                    let distance = Math.sqrt(dx * dx + dy * dy);
+                    if (distance < mouse.radius) {
+                        const force = (mouse.radius - distance) / mouse.radius;
+                        this.x -= dx * force * 0.05;
+                        this.y -= dy * force * 0.05;
+                    }
+                }
+
                 this.x += this.vx;
                 this.y += this.vy;
 
