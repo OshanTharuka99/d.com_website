@@ -1081,87 +1081,65 @@ footer {
     transform: translateY(0);
 }
 
-/* Scroll to Top Button - Tech Edition */
+/* Scroll to Top Button - Professional Tech Style */
 .scroll-to-top {
     position: fixed;
     bottom: 30px;
     right: 30px;
-    width: 55px;
-    height: 55px;
-    background: rgba(10, 10, 10, 0.8);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
+    width: 45px;
+    height: 45px;
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     color: var(--text-white);
-    border-radius: 12px;
-    /* Modern tech shape */
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     z-index: 2000;
-    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     opacity: 0;
     visibility: hidden;
-    transform: translateY(30px) rotate(-10deg);
-    border: 1px solid rgba(255, 26, 26, 0.2);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), inset 0 0 0 0 rgba(255, 26, 26, 0.1);
-    overflow: hidden;
-}
-
-.scroll-to-top::after {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: conic-gradient(from 0deg, transparent, var(--accent-red), transparent 30%);
-    animation: rotate-border 4s linear infinite;
-    opacity: 0;
-    transition: opacity 0.3s;
-    z-index: -1;
-}
-
-@keyframes rotate-border {
-    100% {
-        transform: rotate(360deg);
-    }
+    transform: translateY(20px);
+    border: 1.5px solid rgba(255, 26, 26, 0.5);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
 .scroll-to-top.show {
     opacity: 1;
     visibility: visible;
-    transform: translateY(0) rotate(0deg);
+    transform: translateY(0);
 }
 
 .scroll-to-top:hover {
+    background: rgba(255, 26, 26, 0.2);
     border-color: var(--accent-red);
-    box-shadow: 0 0 30px rgba(255, 26, 26, 0.5), inset 0 0 15px rgba(255, 26, 26, 0.2);
-    transform: translateY(-8px) scale(1.1);
-}
-
-.scroll-to-top:hover::after {
-    opacity: 0.3;
+    box-shadow: 0 0 20px rgba(255, 26, 26, 0.4);
+    transform: translateY(-5px);
 }
 
 .scroll-to-top i {
-    font-size: 1.3rem;
+    font-size: 1.1rem;
+    color: var(--accent-red);
     transition: all 0.3s ease;
-    z-index: 2;
 }
 
 .scroll-to-top:hover i {
-    color: #ffffff;
-    text-shadow: 0 0 10px rgba(255, 26, 26, 0.8);
     transform: translateY(-2px);
+    color: #ffffff;
 }
 
 @media (max-width: 768px) {
     .scroll-to-top {
         bottom: 20px;
         right: 20px;
-        width: 45px;
-        height: 45px;
+        width: 40px;
+        height: 40px;
+    }
+
+    .scroll-to-top i {
+        font-size: 1rem;
     }
 }
 
