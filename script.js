@@ -74,14 +74,51 @@ document.addEventListener("DOMContentLoaded", () => {
         observer.observe(el);
     });
 
-    // Form submission UI update
+    // Form submission via AJAX
     const contactForm = document.querySelector('.contact-form');
     if (contactForm) {
-        contactForm.addEventListener('submit', () => {
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
             const btn = contactForm.querySelector('button');
+            const originalText = btn.innerHTML;
+
             btn.innerHTML = 'Sending... <i class="fas fa-spinner fa-spin"></i>';
             btn.style.opacity = '0.7';
-            // Not preventing default so the form submits to Formsubmit
+
+            const formData = new FormData(contactForm);
+
+            fetch('https://formsubmit.co/ajax/dcom99x@gmail.com', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json'
+                },
+                body: formData
+            })
+                .then(response => response.json())
+                .then(data => {
+                    btn.innerHTML = 'Message Sent! <i class="fas fa-check"></i>';
+                    btn.style.backgroundColor = '#28a745';
+                    btn.style.boxShadow = '0 4px 15px rgba(40, 167, 69, 0.3)';
+                    btn.style.opacity = '1';
+                    contactForm.reset();
+
+                    setTimeout(() => {
+                        btn.innerHTML = originalText;
+                        btn.style.backgroundColor = '';
+                        btn.style.boxShadow = '';
+                    }, 3000);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    btn.innerHTML = 'Error! Try Again';
+                    btn.style.backgroundColor = '#dc3545';
+                    btn.style.opacity = '1';
+
+                    setTimeout(() => {
+                        btn.innerHTML = originalText;
+                        btn.style.backgroundColor = '';
+                    }, 3000);
+                });
         });
     }
 
