@@ -74,32 +74,14 @@ document.addEventListener("DOMContentLoaded", () => {
         observer.observe(el);
     });
 
-    // Form Submission (Prevent default for demo)
+    // Form submission UI update
     const contactForm = document.querySelector('.contact-form');
     if (contactForm) {
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
+        contactForm.addEventListener('submit', () => {
             const btn = contactForm.querySelector('button');
-            const originalText = btn.innerHTML;
-
             btn.innerHTML = 'Sending... <i class="fas fa-spinner fa-spin"></i>';
             btn.style.opacity = '0.7';
-
-            // Simulate network request
-            setTimeout(() => {
-                btn.innerHTML = 'Message Sent! <i class="fas fa-check"></i>';
-                btn.style.backgroundColor = '#28a745'; // Green success color
-                btn.style.boxShadow = '0 4px 15px rgba(40, 167, 69, 0.3)';
-                btn.style.opacity = '1';
-                contactForm.reset();
-
-                // Reset button after 3 seconds
-                setTimeout(() => {
-                    btn.innerHTML = originalText;
-                    btn.style.backgroundColor = '';
-                    btn.style.boxShadow = '';
-                }, 3000);
-            }, 1500);
+            // Not preventing default so the form submits to Formsubmit
         });
     }
 
