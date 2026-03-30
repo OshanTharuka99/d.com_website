@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // Scroll Animation (Intersection Observer)
-    const fadeElements = document.querySelectorAll('.service-card, .about-content, .contact-wrapper, .section-header, .partner-logo, .hero-content');
+    const fadeElements = document.querySelectorAll('.service-card, .about-content, .contact-wrapper, .section-header, .partner-logo, .hero-content, .footer-grid, .footer-bottom');
 
     // Add initial class
     fadeElements.forEach(el => {
