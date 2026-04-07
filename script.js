@@ -477,4 +477,25 @@ document.addEventListener("DOMContentLoaded", () => {
         window.addEventListener('resize', setupSlider);
         setupSlider();
     }
+
+    // Smooth Fade-out/Fade-in Loop Transition
+    const heroVid = document.getElementById('hero-vid');
+    if (heroVid) {
+        heroVid.loop = true; // Re-enable perfect native looping
+        heroVid.style.transition = "opacity 0.6s ease-in-out, transform 0.4s ease, filter 0.4s ease"; // Keep hover transitions, add opacity
+
+        let fadingOut = false;
+        heroVid.addEventListener('timeupdate', () => {
+            // Check if we are close to the end of the video
+            const timeLeft = heroVid.duration - heroVid.currentTime;
+
+            if (timeLeft <= 0.6 && !fadingOut) {
+                fadingOut = true;
+                heroVid.style.opacity = '0'; // Fade out before cut
+            } else if (heroVid.currentTime <= 0.5 && fadingOut) {
+                fadingOut = false;
+                heroVid.style.opacity = '1'; // Fade back in gracefully
+            }
+        });
+    }
 });
