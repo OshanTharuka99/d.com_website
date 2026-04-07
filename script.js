@@ -478,24 +478,24 @@ document.addEventListener("DOMContentLoaded", () => {
         setupSlider();
     }
 
-    // Smooth Fade-out/Fade-in Loop Transition
+    // Hero Video Control Logic
     const heroVid = document.getElementById('hero-vid');
-    if (heroVid) {
-        heroVid.loop = true; // Re-enable perfect native looping
-        heroVid.style.transition = "opacity 0.6s ease-in-out, transform 0.4s ease, filter 0.4s ease"; // Keep hover transitions, add opacity
+    const heroSection = document.getElementById('home');
 
-        let fadingOut = false;
-        heroVid.addEventListener('timeupdate', () => {
-            // Check if we are close to the end of the video
-            const timeLeft = heroVid.duration - heroVid.currentTime;
+    if (heroVid && heroSection) {
+        heroVid.loop = false; // Disable looping
+        heroVid.playbackRate = 1.6; // Incresed speed
 
-            if (timeLeft <= 0.6 && !fadingOut) {
-                fadingOut = true;
-                heroVid.style.opacity = '0'; // Fade out before cut
-            } else if (heroVid.currentTime <= 0.5 && fadingOut) {
-                fadingOut = false;
-                heroVid.style.opacity = '1'; // Fade back in gracefully
-            }
+        // When cursor enters the HERO Section
+        heroSection.addEventListener('mouseenter', () => {
+            heroVid.currentTime = 0; // Reset to start
+            heroVid.play();
+        });
+
+        // When cursor leaves the HERO Section
+        heroSection.addEventListener('mouseleave', () => {
+            heroVid.pause();
+            heroVid.currentTime = 0; // Reset to start
         });
     }
 });
