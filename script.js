@@ -484,7 +484,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (heroVid && heroSection) {
         heroVid.loop = false; // Disable looping
-        heroVid.playbackRate = 1.6; // Incresed speed
+        heroVid.playbackRate = 2.0; // Keep snappier speed
 
         // When cursor enters the HERO Section
         heroSection.addEventListener('mouseenter', () => {
@@ -492,8 +492,12 @@ document.addEventListener("DOMContentLoaded", () => {
             heroVid.play();
         });
 
-        // When cursor leaves the HERO Section
-        heroSection.addEventListener('mouseleave', () => {
+        // When cursor leaves the HERO Section (excludes navigation bar)
+        heroSection.addEventListener('mouseleave', (e) => {
+            const navbar = document.querySelector('.navbar');
+            if (e.relatedTarget && (e.relatedTarget === navbar || navbar.contains(e.relatedTarget))) {
+                return; // Ignore if moving to navbar
+            }
             heroVid.pause();
             heroVid.currentTime = 0; // Reset to start
         });
