@@ -7,8 +7,10 @@
   <!-- Primary Meta Tags -->
   <title>D.COM IT Solution | Networking, Security & Software Services in Sri Lanka</title>
   <meta name="title" content="D.COM IT Solution | Networking, Security & Software Services in Sri Lanka">
-  <meta name="description" content="D.COM IT Solution provides cutting-edge Networking, CCTV, Security, ELV, Website Deployment, and Custom Software Solutions in Gampaha, Sri Lanka.">
-  <meta name="keywords" content="D.COM IT Solution, IT Services Sri Lanka, Networking Sri Lanka, CCTV Installation Gampaha, ELV Systems, Website Deployment, Custom Software Development, Security Solutions Sri Lanka">
+  <meta name="description"
+    content="D.COM IT Solution provides cutting-edge Networking, CCTV, Security, ELV, Website Deployment, and Custom Software Solutions in Gampaha, Sri Lanka.">
+  <meta name="keywords"
+    content="D.COM IT Solution, IT Services Sri Lanka, Networking Sri Lanka, CCTV Installation Gampaha, ELV Systems, Website Deployment, Custom Software Development, Security Solutions Sri Lanka">
   <meta name="author" content="D.COM IT Solution">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://www.dcom.lk/">
@@ -21,14 +23,16 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.dcom.lk/">
   <meta property="og:title" content="D.COM IT Solution | Top IT Services in Sri Lanka">
-  <meta property="og:description" content="Empowering businesses with robust Networking, CCTV, ELV systems, Web deployment, and Software solutions.">
+  <meta property="og:description"
+    content="Empowering businesses with robust Networking, CCTV, ELV systems, Web deployment, and Software solutions.">
   <meta property="og:image" content="https://www.dcom.lk/logo.jpg">
 
   <!-- Twitter -->
   <meta property="twitter:card" content="summary_large_image">
   <meta property="twitter:url" content="https://www.dcom.lk/">
   <meta property="twitter:title" content="D.COM IT Solution | Top IT Services in Sri Lanka">
-  <meta property="twitter:description" content="Empowering businesses with robust Networking, CCTV, ELV systems, Web deployment, and Software solutions.">
+  <meta property="twitter:description"
+    content="Empowering businesses with robust Networking, CCTV, ELV systems, Web deployment, and Software solutions.">
   <meta property="twitter:image" content="https://www.dcom.lk/logo.jpg">
 
   <!-- Schema.org / JSON-LD for Local Business -->
@@ -410,7 +414,7 @@
               <i class="fas fa-envelope contact-icon"></i>
               <div>
                 <h4 style="margin-top: 0;">Email Us</h4>
-                <p>dcom99x@gmail.com</p>
+                <p>hello@dcom.lk</p>
               </div>
             </div>
 
@@ -466,6 +470,7 @@
           <div class="form-group">
             <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
           </div>
+
           <button type="submit" class="btn btn-primary submit-btn">
             Send Message <i class="fas fa-paper-plane" style="margin-left: 10px;"></i>
           </button>
@@ -473,6 +478,26 @@
       </div>
     </div>
   </section>
+
+  <!-- Captcha Modal -->
+  <div id="captcha-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 9999; justify-content: center; align-items: center; backdrop-filter: blur(5px); opacity: 0; transition: opacity 0.3s ease;">
+    <div style="background: #111111; padding: 30px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); width: 90%; max-width: 400px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.5); position: relative; transform: translateY(20px); transition: transform 0.3s ease;" id="captcha-modal-content">
+      <i class="fas fa-user-shield" style="font-size: 3rem; color: #00ff88; margin-bottom: 15px;"></i>
+      <h3 style="color: #fff; margin-bottom: 10px; font-size: 1.5rem;">Security Check</h3>
+      <p style="color: #a3a3a3; font-size: 0.95rem; margin-bottom: 25px; line-height: 1.5;">To keep our inbox free from spam bots, please prove you are human by solving this quick math problem.</p>
+      
+      <div style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 8px; margin-bottom: 25px; display: flex; align-items: center; justify-content: center; gap: 15px; border: 1px solid rgba(255,255,255,0.05);">
+        <span style="color: #fff; font-size: 1.2rem; display: flex; align-items: center; gap: 8px;">What is <span id="math-question" style="font-weight: 700; color: #00ff88; background: rgba(0,255,136,0.1); padding: 5px 10px; border-radius: 4px;"></span> ?</span>
+        <input type="number" id="math-answer" style="width: 80px; padding: 12px; border-radius: 6px; border: 1px solid rgba(0,255,136,0.3); background: rgba(0,0,0,0.5); color: #fff; text-align: center; font-size: 1.2rem; font-weight: bold; outline: none;" placeholder="=" />
+      </div>
+
+      <div style="display: flex; gap: 15px; justify-content: center;">
+        <button type="button" id="cancel-captcha" class="btn" style="background: transparent; border: 1px solid rgba(255,255,255,0.2); color: #fff; flex: 1; border-radius: 6px;">Cancel</button>
+        <button type="button" id="verify-captcha" class="btn btn-primary" style="flex: 1; border-radius: 6px; display: flex; align-items: center; justify-content: center; gap: 8px;">Verify & Send <i class="fas fa-check"></i></button>
+      </div>
+    </div>
+  </div>
+
 
   <!-- Footer -->
   <footer>
@@ -529,7 +554,7 @@
           </div>
           <div class="footer-info-item">
             <i class="fas fa-envelope"></i>
-            <p>dcom99x@gmail.com</p>
+            <p>hello@dcom.lk</p>
           </div>
           <div class="footer-info-item">
             <i class="fas fa-phone-alt"></i>
@@ -556,7 +581,7 @@
     <i class="fas fa-chevron-up"></i>
   </div>
 
-  <script src="script.js"></script>
+  <script src="script.js?v=2"></script>
 
 </body>
 

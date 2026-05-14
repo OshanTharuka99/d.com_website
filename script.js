@@ -74,16 +74,82 @@ document.addEventListener("DOMContentLoaded", () => {
         observer.observe(el);
     });
 
-    // Form submission via AJAX
+    // Form submission via AJAX & Modal Math Captcha Logic
     const contactForm = document.querySelector('.contact-form');
+    const captchaModal = document.getElementById('captcha-modal');
+    const captchaModalContent = document.getElementById('captcha-modal-content');
+    const mathQuestion = document.getElementById('math-question');
+    const mathAnswer = document.getElementById('math-answer');
+    const btnCancelCaptcha = document.getElementById('cancel-captcha');
+    const btnVerifyCaptcha = document.getElementById('verify-captcha');
+    let captchaNum1, captchaNum2;
+
+    function generateCaptcha() {
+        if (mathQuestion && mathAnswer) {
+            captchaNum1 = Math.floor(Math.random() * 10) + 1;
+            captchaNum2 = Math.floor(Math.random() * 10) + 1;
+            mathQuestion.textContent = `${captchaNum1} + ${captchaNum2}`;
+            mathAnswer.value = '';
+        }
+    }
+
+    function openCaptchaModal() {
+        if(captchaModal) {
+            generateCaptcha();
+            captchaModal.style.display = 'flex';
+            // slight delay to allow display:flex to apply before animating opacity
+            setTimeout(() => {
+                captchaModal.style.opacity = '1';
+                if(captchaModalContent) captchaModalContent.style.transform = 'translateY(0)';
+                if(mathAnswer) mathAnswer.focus();
+            }, 10);
+        }
+    }
+
+    function closeCaptchaModal() {
+        if(captchaModal) {
+            captchaModal.style.opacity = '0';
+            if(captchaModalContent) captchaModalContent.style.transform = 'translateY(20px)';
+            setTimeout(() => {
+                captchaModal.style.display = 'none';
+            }, 300);
+        }
+    }
+
+    if (btnCancelCaptcha) {
+        btnCancelCaptcha.addEventListener('click', closeCaptchaModal);
+    }
+
     if (contactForm) {
         contactForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            const btn = contactForm.querySelector('button');
-            const originalText = btn.innerHTML;
+            // Form is valid (browser checks required fields before submit event)
+            openCaptchaModal();
+        });
+    }
 
-            btn.innerHTML = 'Sending... <i class="fas fa-spinner fa-spin"></i>';
-            btn.style.opacity = '0.7';
+    if (btnVerifyCaptcha) {
+        btnVerifyCaptcha.addEventListener('click', () => {
+            // Validate Captcha
+            if (mathAnswer && parseInt(mathAnswer.value) !== (captchaNum1 + captchaNum2)) {
+                alert('Incorrect answer. Please try again to verify you are human.');
+                generateCaptcha();
+                mathAnswer.focus();
+                return; 
+            }
+
+            // Captcha passed - Show loading state on modal button
+            const originalModalBtnText = btnVerifyCaptcha.innerHTML;
+            btnVerifyCaptcha.innerHTML = 'Sending... <i class="fas fa-spinner fa-spin"></i>';
+            btnVerifyCaptcha.style.opacity = '0.7';
+            btnVerifyCaptcha.disabled = true;
+
+            const btn = contactForm.querySelector('button[type="submit"]');
+            const originalText = btn ? btn.innerHTML : '';
+            if (btn) {
+                btn.innerHTML = 'Sending... <i class="fas fa-spinner fa-spin"></i>';
+                btn.style.opacity = '0.7';
+            }
 
             const formData = new FormData(contactForm);
 
@@ -96,28 +162,42 @@ document.addEventListener("DOMContentLoaded", () => {
             })
                 .then(response => response.json())
                 .then(data => {
-                    btn.innerHTML = 'Message Sent! <i class="fas fa-check"></i>';
-                    btn.style.backgroundColor = '#28a745';
-                    btn.style.boxShadow = '0 4px 15px rgba(40, 167, 69, 0.3)';
-                    btn.style.opacity = '1';
+                    closeCaptchaModal();
+                    
+                    if (btn) {
+                        btn.innerHTML = 'Message Sent! <i class="fas fa-check"></i>';
+                        btn.style.backgroundColor = '#28a745';
+                        btn.style.boxShadow = '0 4px 15px rgba(40, 167, 69, 0.3)';
+                        btn.style.opacity = '1';
+                    }
                     contactForm.reset();
 
                     setTimeout(() => {
-                        btn.innerHTML = originalText;
-                        btn.style.backgroundColor = '';
-                        btn.style.boxShadow = '';
-                    }, 3000);
+                        if (btn) {
+                            btn.innerHTML = originalText;
+                            btn.style.backgroundColor = '';
+                            btn.style.boxShadow = '';
+                        }
+                    }, 4000);
                 })
                 .catch(error => {
-                    console.error('Error:', error);
-                    btn.innerHTML = 'Error! Try Again';
-                    btn.style.backgroundColor = '#dc3545';
-                    btn.style.opacity = '1';
+                    console.error('Fetch Error:', error);
+                    alert('Error sending message! If you are testing locally, this might be a CORS error. Try opening the website from a local server. Error details: ' + error.message);
+                    
+                    btnVerifyCaptcha.innerHTML = originalModalBtnText;
+                    btnVerifyCaptcha.style.opacity = '1';
+                    btnVerifyCaptcha.disabled = false;
 
-                    setTimeout(() => {
-                        btn.innerHTML = originalText;
-                        btn.style.backgroundColor = '';
-                    }, 3000);
+                    if (btn) {
+                        btn.innerHTML = 'Error! Try Again';
+                        btn.style.backgroundColor = '#dc3545';
+                        btn.style.opacity = '1';
+
+                        setTimeout(() => {
+                            btn.innerHTML = originalText;
+                            btn.style.backgroundColor = '';
+                        }, 3000);
+                    }
                 });
         });
     }
